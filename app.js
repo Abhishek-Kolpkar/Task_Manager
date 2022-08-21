@@ -4,23 +4,21 @@ let closeBtn = document.querySelector(".close-btn");
 let doneBtn = document.querySelector(".done-btn");
 let navBtns = document.querySelectorAll(".btn");
 let taskScreen = document.querySelector(".task-screen");
-let showAllBtn = document.querySelector(".screen1");
+let showAllTask = document.querySelector(".screen1");
 let redColorScreen = document.querySelector(".screen2");
 let yellowColorScreen = document.querySelector(".screen3");
 let blueColorScreen = document.querySelector(".screen4");
 let blackColorScreen = document.querySelector(".screen5");
 let checkedBoxScreen = document.querySelector(".screen6");
+let input = document.getElementById("input");
 
+// show popup-box
 createTaskBtn.addEventListener("click", () => {
   popupScreen.classList.add("displayBlock");
   taskScreen.classList.add("blurBackground");
 });
 
-closeBtn.addEventListener("click", () => {
-  popupScreen.classList.remove("displayBlock");
-  taskScreen.classList.remove("blurBackground");
-});
-
+// add border around nav-btns
 let clicked = navBtns[0];
 for (let i = 0; i < navBtns.length; i++) {
   for (let j = 0; j < navBtns.length; j++) {
@@ -35,7 +33,9 @@ for (let i = 0; i < navBtns.length; i++) {
   });
 }
 
-doneBtn.disabled = true;
+// change done-btn color according to color selection
+// doneBtn.disabled = true;
+doneBtn.classList.add("displayNone");
 let colorSelect = document.getElementsByClassName("colors");
 let clicked2 = colorSelect[0];
 for (let i = 0; i < colorSelect.length; i++) {
@@ -48,7 +48,8 @@ for (let i = 0; i < colorSelect.length; i++) {
     clicked2.classList.remove("border");
     colorSelect[i].classList.add("border");
     clicked2 = colorSelect[i];
-    doneBtn.disabled = false;
+    // doneBtn.disabled = false;
+    doneBtn.classList.remove("displayNone");
     let colorCss = window
       .getComputedStyle(colorSelect[i])
       .getPropertyValue("background-color");
@@ -56,156 +57,196 @@ for (let i = 0; i < colorSelect.length; i++) {
   });
 }
 
+// hide popup-box
+closeBtn.addEventListener("click", () => {
+  popupScreen.classList.remove("displayBlock");
+  taskScreen.classList.remove("blurBackground");
+  doneBtn.classList.add("displayNone");
+  clicked2.classList.remove("border");
+});
+
+// create task-Box after cliking on done-Btn
 doneBtn.addEventListener("click", () => {
-  let taskBox = document.createElement("div");
-  taskBox.classList.add("task-box");
-  taskScreen.append(taskBox);
+  if (input.value.length > 0) {
+    // append taskbox to taskScreen
+    let taskBox = document.createElement("div");
+    taskBox.classList.add("task-box");
+    taskScreen.append(taskBox);
 
-  let topBorder = document.createElement("div");
-  topBorder.classList.add("top-border");
-  topBorder.style.backgroundColor = doneBtn.style.backgroundColor;
-  taskBox.appendChild(topBorder);
+    // add topBorder div to taskbox
+    let topBorder = document.createElement("div");
+    topBorder.classList.add("top-border");
+    topBorder.style.backgroundColor = doneBtn.style.backgroundColor;
+    taskBox.appendChild(topBorder);
 
-  let inputText = document.createElement("div");
-  inputText.setAttribute("class", "input-text");
-  inputText.textContent = input.value;
-  taskBox.appendChild(inputText);
+    // add inputText div to taskbox
+    let inputText = document.createElement("div");
+    inputText.setAttribute("class", "input-text");
+    inputText.textContent = input.value;
+    taskBox.appendChild(inputText);
 
-  let icons = document.createElement("div");
-  icons.setAttribute("class", "icons");
-  taskBox.append(icons);
+    // add icons div to taskbox
+    let icons = document.createElement("div");
+    icons.setAttribute("class", "icons");
+    taskBox.append(icons);
 
-  let actionIcons = document.createElement("div");
-  actionIcons.classList.add("action-icons", "visibilityHide");
-  icons.append(actionIcons);
+    // add actionIcons div to icons div
+    let actionIcons = document.createElement("div");
+    actionIcons.classList.add("action-icons", "visibilityHide");
+    icons.appendChild(actionIcons);
 
-  let check = document.createElement("i");
-  check.setAttribute("id", "check");
-  check.classList.add("fa-solid", "fa-check");
-  actionIcons.append(check);
+    // add check icon to actionIcons div
+    let check = document.createElement("i");
+    check.setAttribute("id", "check");
+    check.classList.add("fa-solid", "fa-check");
+    actionIcons.appendChild(check);
 
-  check.addEventListener("click", () => {
-    taskBox.classList.add("displayNone");
-    taskBox.classList.add("checkedItems");
-    check.style.color = "white";
-  });
-
-  checkedBoxScreen.addEventListener("click", () => {
-    if (taskBox.classList.contains("checkedItems")) {
-      taskBox.classList.remove("displayNone");
-    } else {
+    // add function on check icon
+    check.addEventListener("click", () => {
+      taskBox.classList.add("checkedItems");
       taskBox.classList.add("displayNone");
-    }
-  });
+      check.style.color = "white";
+      topBorder.innerText = "Task Completed"
+    });
 
-  let trash = document.createElement("i");
-  trash.setAttribute("id", "trash");
-  trash.classList.add("fa-solid", "fa-trash-can");
-  actionIcons.append(trash);
+    // add function on checkedBoxScreen icon
+    checkedBoxScreen.addEventListener("click", () => {
+      if (taskBox.classList.contains("checkedItems")) {
+        taskBox.classList.remove("displayNone");
+        actionIcons.removeChild(check);
+      }
+      else{
+        taskBox.classList.add("displayNone");
+      }
+    });
 
-  trash.addEventListener("click", () => {
-    taskBox.remove();
-  });
+    // add trash/delete icon to actionIcons div
+    let trash = document.createElement("i");
+    trash.setAttribute("id", "trash");
+    trash.classList.add("fa-solid", "fa-trash-can");
+    actionIcons.append(trash);
 
-  let edit = document.createElement("i");
-  edit.setAttribute("id", "pen");
-  edit.classList.add("fa-solid", "fa-pen");
-  actionIcons.append(edit);
+    // add function on trash/delete icon
+    trash.addEventListener("click", () => {
+      taskBox.remove();
+    });
 
-  edit.addEventListener("click", function onOff() {
-    if (inputText.contentEditable != "true") {
-      inputText.contentEditable = "true";
-      inputText.focus();
-      edit.style.color = "red";
-    } else {
-      inputText.contentEditable = "false";
-      edit.style.color = "white";
-    }
-  });
+    // add text edit icon to actionIcons div
+    let edit = document.createElement("i");
+    edit.setAttribute("id", "pen");
+    edit.classList.add("fa-solid", "fa-pen");
+    actionIcons.append(edit);
 
-  let colorChange = document.createElement("i");
-  colorChange.setAttribute("id", "color-change");
-  colorChange.classList.add("fa-solid", "fa-square-full");
-  actionIcons.append(colorChange);
+    // add function on edit text icon
+    edit.addEventListener("click", function onOff() {
+      if (inputText.contentEditable != "true") {
+        inputText.contentEditable = "true";
+        inputText.focus();
+        edit.style.color = "red";
+      } else {
+        inputText.contentEditable = "false";
+        edit.style.color = "white";
+      }
+    });
 
-  colorChange.addEventListener("click", () => {
-    let myColors = ["red", "yellow", "blue", "black"];
-    if (topBorder.style.backgroundColor == myColors[myColors.length - 1]) {
-      topBorder.style.backgroundColor = myColors[0];
-    } else {
-      topBorder.style.backgroundColor =
-        myColors[myColors.indexOf(topBorder.style.backgroundColor) + 1];
-    }
-  });
+    // add topBorder colorChange icon to actionIcons div
+    let colorChange = document.createElement("i");
+    colorChange.setAttribute("id", "color-change");
+    colorChange.classList.add("fa-solid", "fa-square-full");
+    actionIcons.append(colorChange);
 
-  let lockIcons = document.createElement("div");
-  lockIcons.setAttribute("class", "lock-icons");
-  icons.append(lockIcons);
+    colorChange.addEventListener("click", () => {
+      let colors = ["rgb(255, 0, 0)", "rgb(255, 255, 0)", "rgb(0, 0, 255)", "rgb(0, 0, 0)"];
+      if (topBorder.style.backgroundColor == colors[colors.length - 1]) {
+        topBorder.style.backgroundColor = colors[0];
+      } else {
+        topBorder.style.backgroundColor =
+          colors[colors.indexOf(topBorder.style.backgroundColor) + 1];
+      }
+    });
 
-  let unlock = document.createElement("i");
-  unlock.setAttribute("id", "unlock");
-  unlock.classList.add("fa-solid", "fa-lock-open");
+    // add lockIcons div to icons div
+    let lockIcons = document.createElement("div");
+    lockIcons.setAttribute("class", "lock-icons");
+    icons.append(lockIcons);
 
-  let lock = document.createElement("i");
-  lock.setAttribute("id", "lock");
-  lock.classList.add("fa-solid", "fa-lock");
-  lockIcons.append(lock);
+    // add unlock icon to lockIcons div
+    let unlock = document.createElement("i");
+    unlock.setAttribute("id", "unlock");
+    unlock.classList.add("fa-solid", "fa-lock-open");
 
-  lock.addEventListener("click", () => {
-    lock.replaceWith(unlock);
-    actionIcons.classList.remove("visibilityHide");
-  });
+    // add lock icon to lockIcons div
+    let lock = document.createElement("i");
+    lock.setAttribute("id", "lock");
+    lock.classList.add("fa-solid", "fa-lock");
+    lockIcons.append(lock);
 
-  unlock.addEventListener("click", () => {
-    unlock.replaceWith(lock);
-    actionIcons.classList.add("visibilityHide");
-  });
+    lock.addEventListener("click", () => {
+      lock.replaceWith(unlock);
+      actionIcons.classList.remove("visibilityHide");
+    });
 
-  showAllBtn.addEventListener("click", () => {
-    if (taskBox.classList.contains("checkedItems")) {
-      taskBox.classList.add("displayNone");
-    } else {
-      taskBox.classList.remove("displayNone");
-    }
-  });
+    unlock.addEventListener("click", () => {
+      unlock.replaceWith(lock);
+      actionIcons.classList.add("visibilityHide");
+    });
+////######################################################################################////
 
-  redColorScreen.addEventListener("click", () => {
-    if (taskBox.classList.contains("checkedItems")) {
-      taskBox.classList.remove("displayNone");
-    } else if (topBorder.style.backgroundColor != "red") {
-      taskBox.classList.add("displayNone");
-    } else {
-      taskBox.classList.remove("displayNone");
-    }
-  });
+    showAllTask.addEventListener("click", () => {
+      if (taskBox.classList.contains("checkedItems")) {
+        taskBox.classList.add("displayNone");
+      } else {
+        taskBox.classList.remove("displayNone");
+      }
+    });
 
-  yellowColorScreen.addEventListener("click", () => {
-    if (taskBox.classList.contains("checkedItems")) {
-      taskBox.classList.remove("displayNone");
-    } else if (topBorder.style.backgroundColor != "yellow") {
-      taskBox.classList.add("displayNone");
-    } else {
-      taskBox.classList.remove("displayNone");
-    }
-  });
+    redColorScreen.addEventListener("click", () => {
+      if (taskBox.classList.contains("checkedItems")) {
+        taskBox.classList.add("displayNone");
+      } else if (topBorder.style.backgroundColor != "rgb(255, 0, 0)") {
+        taskBox.classList.add("displayNone");
+      } else {
+        taskBox.classList.remove("displayNone");
+      }
+    });
 
-  blueColorScreen.addEventListener("click", () => {
-    if (taskBox.classList.contains("checkedItems")) {
-      taskBox.classList.remove("displayNone");
-    } else if (topBorder.style.backgroundColor != "blue") {
-      taskBox.classList.add("displayNone");
-    } else {
-      taskBox.classList.remove("displayNone");
-    }
-  });
+    yellowColorScreen.addEventListener("click", () => {
+      if (taskBox.classList.contains("checkedItems")) {
+        taskBox.classList.add("displayNone");
+      } else if (topBorder.style.backgroundColor != "rgb(255, 255, 0)") {
+        taskBox.classList.add("displayNone");
+      } else {
+        taskBox.classList.remove("displayNone");
+      }
+    });
 
-  blackColorScreen.addEventListener("click", () => {
-    if (taskBox.classList.contains("checkedItems")) {
-      taskBox.classList.remove("displayNone");
-    } else if (topBorder.style.backgroundColor != "black") {
-      taskBox.classList.add("displayNone");
-    } else {
-      taskBox.classList.remove("displayNone");
-    }
-  });
+    blueColorScreen.addEventListener("click", () => {
+      if (taskBox.classList.contains("checkedItems")) {
+        taskBox.classList.add("displayNone");
+      } else if (topBorder.style.backgroundColor != "rgb(0, 0, 255)") {
+        taskBox.classList.add("displayNone");
+      } else {
+        taskBox.classList.remove("displayNone");
+      }
+    });
+
+    blackColorScreen.addEventListener("click", () => {
+      if (taskBox.classList.contains("checkedItems")) {
+        taskBox.classList.add("displayNone");
+      } else if (topBorder.style.backgroundColor != "rgb(0, 0, 0)") {
+        taskBox.classList.add("displayNone");
+      } else {
+        taskBox.classList.remove("displayNone");
+      }
+    });
+
+    popupScreen.classList.remove("displayBlock");
+    taskBox.classList.remove("displayNone");
+    taskScreen.classList.remove("blurBackground");
+    doneBtn.classList.add("displayNone");
+    clicked2.classList.remove("border");
+    input.value = "";
+  } else {
+    alert("Please enter task...");
+  }
 });

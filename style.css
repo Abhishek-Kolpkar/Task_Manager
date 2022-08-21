@@ -1,92 +1,173 @@
 /***** font selection *****/
-@import url('https://fonts.googleapis.com/css2?family=PT+Mono&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=PT+Mono&display=swap");
 /*/////////////////////////////////////////////////////////////////////////*/
 /***** reset CSS start *****/
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
 body {
-	line-height: 1;
-  font-family: 'PT Mono', monospace;
+  line-height: 1;
+  font-family: "PT Mono", monospace;
 }
-ol, ul {
-	list-style: none;
+ol,
+ul {
+  list-style: none;
 }
-blockquote, q {
-	quotes: none;
+blockquote,
+q {
+  quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 /***** reset CSS end *****/
 /*/////////////////////////////////////////////////////////////////////////*/
 /***** Global CSS start *****/
-*{
+* {
   box-sizing: border-box;
 }
 
-.container{
+.container {
   max-width: 1150px;
   margin: 0 auto;
   padding: 0 30px;
 }
 
-.flex{
+.flex {
   display: flex;
   justify-content: space-between;
 }
 
-.red{
-  background-color: red;
+.red {
+  background-color: rgb(255,0,0);
 }
-.yellow{
-  background-color: yellow;
+.yellow {
+  background-color: rgb(255,255,0);
 }
-.blue{
-  background-color: blue;
+.blue {
+  background-color: rgb(0,0,255);
 }
-.black{
-  background-color: black;
+.black {
+  background-color: rgb(0,0,0);
 }
 /***** Global CSS end *****/
 /*/////////////////////////////////////////////////////////////////////////*/
 /***** general CSS start *****/
-#header{
+#header {
   width: 100%;
   height: 70px;
   background-color: lightskyblue;
   line-height: 70px;
 }
 
-#nav{
+#nav {
   width: 500px;
   height: 55px;
   padding: 8px 10px;
@@ -96,7 +177,7 @@ table {
   background-color: honeydew;
   border-radius: 20px;
 }
-#nav div{
+#nav div {
   width: 75px;
   height: 100%;
   text-align: center;
@@ -106,11 +187,11 @@ table {
   cursor: pointer;
   font-size: 35px;
 }
-#nav .show-all{
+#nav .show-all {
   font-size: 22px;
 }
 
-.create-task-btn{
+.create-task-btn {
   width: 160px;
   height: 55px;
   padding: 0 10px;
@@ -126,10 +207,10 @@ table {
 }
 
 /* main section */
-#main{
+#main {
   padding: 50px 20px;
 }
-.popup-box{
+.popup-box {
   width: 550px;
   height: 300px;
   border-radius: 20px;
@@ -138,7 +219,7 @@ table {
   left: 30%;
 }
 
-.popup-box .input-area{
+.popup-box .input-area {
   width: 75%;
   height: 100%;
   padding: 15px;
@@ -148,7 +229,7 @@ table {
   row-gap: 25px;
 }
 
-.popup-box .input-area .input{
+.popup-box .input-area .input {
   width: 100%;
   height: 80%;
   padding: 20px;
@@ -160,7 +241,7 @@ table {
   color: white;
 }
 
-.popup-box .input-area .done-btn{
+.popup-box .input-area .done-btn {
   height: 15%;
   width: 120px;
   background-color: sandybrown;
@@ -174,7 +255,7 @@ table {
   cursor: pointer;
 }
 
-.popup-box .color-selection{
+.popup-box .color-selection {
   width: 25%;
   height: 100%;
   padding: 35px 0;
@@ -187,14 +268,14 @@ table {
   place-items: center;
 }
 
-.popup-box .color-selection .colors{
+.popup-box .color-selection .colors {
   width: 90px;
   height: 45px;
   border-radius: 10px;
   cursor: pointer;
 }
 
-.popup-box .close-btn{
+.popup-box .close-btn {
   font-size: 20px;
   color: white;
   position: absolute;
@@ -202,14 +283,13 @@ table {
   right: 3%;
   cursor: pointer;
 }
-.popup-box .close-btn:hover{
+.popup-box .close-btn:hover {
   color: red;
   transform: scale(1.5);
 }
 
-
 /* taskScreen */
-.task-screen{
+.task-screen {
   width: 100%;
   height: 100vh;
   display: flex;
@@ -221,17 +301,21 @@ table {
   display: inline-block;
   position: relative;
   background-color: lightskyblue;
-  width: 300px;
-  height: 250PX;
+  width: 350px;
+  height: 250px;
   border-radius: 20px;
 }
 
-.task-box .top-border{
+.task-box .top-border {
   height: 10%;
   border-radius: 20px;
+  text-align: center;
+  line-height: 1.5;
+  color: orange;
+  font-weight: bold;
 }
 
-.task-box .input-text{
+.task-box .input-text {
   width: 100%;
   height: 70%;
   padding: 15px 20px;
@@ -243,47 +327,45 @@ table {
   overflow-y: auto;
 }
 
-.task-box .icons{
+.task-box .icons {
   width: 100%;
   padding: 5px 5px 5px 20px;
   display: flex;
   justify-content: space-between;
   align-content: center;
 }
-.task-box .icons i{
+.task-box .icons i {
   margin-right: 15px;
   font-size: 18px;
 }
 
-.task-box .icons .action-icons .fa-check{
+.task-box .icons .action-icons .fa-check {
   color: green;
 }
-.task-box .icons .action-icons .fa-trash-can{
+.task-box .icons .action-icons .fa-trash-can {
   color: red;
 }
-.task-box .icons .action-icons .fa-pen{
+.task-box .icons .action-icons .fa-pen {
   color: white;
 }
-.task-box .icons .action-icons .fa-square-full{
+.task-box .icons .action-icons .fa-square-full {
   color: yellow;
 }
 
-
-
-.displayNone{
+.displayNone {
   display: none;
 }
-.displayBlock{
+.displayBlock {
   display: block;
 }
-.visibilityHide{
+.visibilityHide {
   visibility: hidden;
 }
-.blurBackground{
-  filter: blur(3px);
+.blurBackground {
+  filter: blur(2px);
 }
 
-.border{
-  border:  2px solid mediumvioletred;
+.border {
+  border: 2px solid mediumvioletred;
 }
 /***** general CSS end *****/
