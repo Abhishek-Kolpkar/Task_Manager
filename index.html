@@ -1,59 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Project</title>
-  <!-- styling CSS file -->
-  <link rel="stylesheet" href="./style.css">
-  <!-- font-awesome icons cdn file -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
-</head>
-<body>
-  <header id="header">
-    <div class="container flex">
-      <nav id="nav" class="flex">
-        <div class="show-all screen1 btn">All</div>
-        <div class="color red screen2 btn"></div>
-        <div class="color yellow screen3 btn"></div>
-        <div class="color blue screen4 btn"></div>
-        <div class="color black screen5 btn"></div>
-        <div class="checked-icon screen6 btn">
-          <i class="fa-solid fa-check"></i>
-        </div>
-      </nav>
-      <div class="create-task-btn">Create Task</div>
-    </div>
-  </header>
-
-  <main id="main">
-    <section class="container">
-      <div class="task-screen"></div>
-
-
-      <div class="popup-box displayNone">
-        <div class="input-area flex">
-          <textarea name="input" id="input" class="input" cols="30" rows="10" placeholder="Enter task here..."></textarea>
-          <button class="done-btn">Done</button>
-        </div>
-        <div class="color-selection">
-          <div class="colors red"></div>
-          <div class="colors yellow"></div>
-          <div class="colors blue"></div>
-          <div class="colors black"></div>
-        </div>
-        <div class="close-btn">
-          <i class="fa-solid fa-xmark"></i>
-        </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project</title>
+    <!-- styling CSS file -->
+    <link rel="stylesheet" href="./style.css" />
+    <!-- font-awesome icons cdn file -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header id="header">
+      <div class="container flex">
+        <nav id="nav" class="flex">
+          <div class="show-all screen1 btn">All</div>
+          <div class="color red screen2 btn"></div>
+          <div class="color yellow screen3 btn"></div>
+          <div class="color blue screen4 btn"></div>
+          <div class="color black screen5 btn"></div>
+          <div class="checked-icon screen6 btn">
+            <i class="fa-solid fa-check"></i>
+          </div>
+        </nav>
+        <div class="create-task-btn">Create Task</div>
       </div>
+    </header>
 
-      
-    </section>
-  </main>
+    <main id="main">
+      <section class="container">
+        <div class="task-screen">
+          <!-- <div class="task-box">
+          <div class="top-border"></div>
+          <div class="input-text"></div>
+          <div class="icons">
+            <div class="action-icons">
+              <i class="fa-solid fa-check" id="check"></i>
+              <i class="fa-solid fa-trash-can" id="trash"></i>
+              <i class="fa-solid fa-pen" id="pen"></i>
+              <i class="fa-solid fa-square-full" id="color-change"></i>
+            </div>
+            <div class="lock-icons">
+              <i class="fa-solid fa-lock" id="lock"></i>
+              <i class="fa-solid fa-lock-open" id="unlock"></i>
+            </div>
+          </div>
+        </div> -->
+        </div>
 
+        <div class="popup-box displayNone">
+          <div class="input-area flex">
+            <textarea
+              name="input"
+              id="input"
+              class="input"
+              cols="30"
+              rows="10"
+              placeholder="Enter task here..."
+            ></textarea>
+            <button class="done-btn">Done</button>
+          </div>
+          <div class="color-selection">
+            <div class="colors red"></div>
+            <div class="colors yellow"></div>
+            <div class="colors blue"></div>
+            <div class="colors black"></div>
+          </div>
+          <div class="close-btn">
+            <i class="fa-solid fa-xmark"></i>
+          </div>
+        </div>
+      </section>
+    </main>
 
-  <!-- JavaScript File -->
-  <script src="./app.js"></script>
-</body>
+    <!-- JavaScript File -->
+    <script src="./app.js"></script>
+  </body>
 </html>
