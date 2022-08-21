@@ -17,6 +17,7 @@ createTaskBtn.addEventListener("click", () => {
   popupScreen.classList.add("displayBlock");
   taskScreen.classList.add("blurBackground");
 });
+////######################################################################################////
 
 // add border around nav-btns
 let clicked = navBtns[0];
@@ -32,6 +33,7 @@ for (let i = 0; i < navBtns.length; i++) {
     clicked = navBtns[i];
   });
 }
+////######################################################################################////
 
 // change done-btn color according to color selection
 // doneBtn.disabled = true;
@@ -56,6 +58,7 @@ for (let i = 0; i < colorSelect.length; i++) {
     doneBtn.style.backgroundColor = colorCss;
   });
 }
+////######################################################################################////
 
 // hide popup-box
 closeBtn.addEventListener("click", () => {
@@ -64,6 +67,7 @@ closeBtn.addEventListener("click", () => {
   doneBtn.classList.add("displayNone");
   clicked2.classList.remove("border");
 });
+////######################################################################################////
 
 // create task-Box after cliking on done-Btn
 doneBtn.addEventListener("click", () => {
@@ -84,6 +88,7 @@ doneBtn.addEventListener("click", () => {
     inputText.setAttribute("class", "input-text");
     inputText.textContent = input.value;
     taskBox.appendChild(inputText);
+////######################################################################################////
 
     // add icons div to taskbox
     let icons = document.createElement("div");
@@ -124,7 +129,7 @@ doneBtn.addEventListener("click", () => {
     let trash = document.createElement("i");
     trash.setAttribute("id", "trash");
     trash.classList.add("fa-solid", "fa-trash-can");
-    actionIcons.append(trash);
+    actionIcons.appendChild(trash);
 
     // add function on trash/delete icon
     trash.addEventListener("click", () => {
@@ -135,7 +140,7 @@ doneBtn.addEventListener("click", () => {
     let edit = document.createElement("i");
     edit.setAttribute("id", "pen");
     edit.classList.add("fa-solid", "fa-pen");
-    actionIcons.append(edit);
+    actionIcons.appendChild(edit);
 
     // add function on edit text icon
     edit.addEventListener("click", function onOff() {
@@ -153,7 +158,7 @@ doneBtn.addEventListener("click", () => {
     let colorChange = document.createElement("i");
     colorChange.setAttribute("id", "color-change");
     colorChange.classList.add("fa-solid", "fa-square-full");
-    actionIcons.append(colorChange);
+    actionIcons.appendChild(colorChange);
 
     colorChange.addEventListener("click", () => {
       let colors = ["rgb(255, 0, 0)", "rgb(255, 255, 0)", "rgb(0, 0, 255)", "rgb(0, 0, 0)"];
@@ -164,11 +169,12 @@ doneBtn.addEventListener("click", () => {
           colors[colors.indexOf(topBorder.style.backgroundColor) + 1];
       }
     });
+////######################################################################################////
 
     // add lockIcons div to icons div
     let lockIcons = document.createElement("div");
     lockIcons.setAttribute("class", "lock-icons");
-    icons.append(lockIcons);
+    icons.appendChild(lockIcons);
 
     // add unlock icon to lockIcons div
     let unlock = document.createElement("i");
@@ -179,7 +185,7 @@ doneBtn.addEventListener("click", () => {
     let lock = document.createElement("i");
     lock.setAttribute("id", "lock");
     lock.classList.add("fa-solid", "fa-lock");
-    lockIcons.append(lock);
+    lockIcons.appendChild(lock);
 
     lock.addEventListener("click", () => {
       lock.replaceWith(unlock);
